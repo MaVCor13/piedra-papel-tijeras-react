@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import './App.css'; // 
-
+import './App.css'; 
 const options = ["Piedra", "Papel", "Tijeras"];
 
 const getResult = (userChoice, computerChoice) => {
@@ -29,7 +28,7 @@ function App() {
   };
 
   return (
-    <><div className="App">
+    <div className="App">
       <h1>Juego de Piedra, Papel y Tijeras</h1>
       <div>
         {options.map((choice) => (
@@ -47,10 +46,10 @@ function App() {
         </div>
       )}
       <div>
-      <img src="/img/piedra.png" alt="Piedra" />
-      <img src="/img/papel.png" alt="Papel" />
-      <img src="/img/tijeras.png" alt="Tijeras" />
-      
+        <img src="/img/piedra.png" alt="Piedra" />
+        <img src="/img/papel.png" alt="Papel" />
+        <img src="/img/tijeras.png" alt="Tijeras" />
+      </div>
     </div>
   );
 }
