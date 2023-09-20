@@ -24,17 +24,6 @@ const getResult = (userChoice, computerChoice) => {
 };
 
 function App() {
-  const [playerName, setPlayerName] = useState("");
-
-  const handleNameChange = (event) => {
-    setPlayerName(event.target.value);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    alert(`¡Hola, ${playerName}!`);
-  };
-
   const [playerChoice, setPlayerChoice] = useState(null);
   const [computerChoice, setComputerChoice] = useState(null);
   const [result, setResult] = useState(null);
@@ -57,25 +46,11 @@ function App() {
   return (
     <div className="container">
       <h1 className="header">Juego de Piedra, Papel y Tijeras</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Ingresa tu nombre:
-          <input
-            type="text"
-            value={playerName}
-            onChange={handleNameChange}
-          />
-        </label>
-        <button type="submit" className="button">
-          Comenzar
-        </button>
-      </form>
-
       <div className="button-container">
         {options.map((choice) => (
           <button
-            key={choice.id}
-            onClick={() => handleChoice(choice)}
+            key={choice.name}
+            onClick={() => handleChoice(choice.name)}
             disabled={playerChoice !== null}
             className="button"
           >
@@ -86,18 +61,24 @@ function App() {
       {playerChoice && computerChoice && (
         <div className="result-container">
           <p>Tu elección: {playerChoice}</p>
-          <p>Elección de la computadora: {computerChoice.name}</p>
+          <p>Elección de la computadora: {computerChoice}</p>
           <p>Resultado: {result}</p>
           <button onClick={resetGame} className="button">
             Reiniciar
           </button>
         </div>
       )}
+      <div className="images-container">
+        <img src="/piedra.jpg" alt="Piedra" />
+        <img src="/papel.jpg" alt="Papel" />
+        <img src="/tijeras.jpg" alt="Tijeras" />
+      </div>
     </div>
   );
 }
 
 export default App;
+
 
 
 
