@@ -24,7 +24,7 @@ const getResult = (userChoice, computerChoice) => {
 };
 
 function App() {
-  const [playerName, setPlayerName] = useState("");
+  const [playerName, setPlayerName] = useState(""); 
 
   const handleNameChange = (event) => {
     setPlayerName(event.target.value);
@@ -32,16 +32,15 @@ function App() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert(`¡Hola, ${playerName}!`);
+    alert(`¡Hola, ${playerName}!`); 
   };
 
-  const [playerChoice, setPlayerChoice] = useState(null);
+ const [playerChoice, setPlayerChoice] = useState(null);
   const [computerChoice, setComputerChoice] = useState(null);
   const [result, setResult] = useState(null);
 
   const handleChoice = (choice) => {
-    const computerChoice =
-      options[Math.floor(Math.random() * options.length)];
+    const computerChoice = options[Math.floor(Math.random() * options.length)];
     const gameResult = getResult(choice, computerChoice);
 
     setPlayerChoice(choice);
@@ -75,8 +74,8 @@ function App() {
       <div className="button-container">
         {options.map((choice) => (
           <button
-            key={choice.name}
-            onClick={() => handleChoice(choice.name)}
+            key={choice.id} {/* Usar choice.id en lugar de choice.name */}
+            onClick={() => handleChoice(choice)} {/* Pasa choice directamente */}
             disabled={playerChoice !== null}
             className="button"
           >
@@ -87,7 +86,7 @@ function App() {
       {playerChoice && computerChoice && (
         <div className="result-container">
           <p>Tu elección: {playerChoice}</p>
-          <p>Elección de la computadora: {computerChoice}</p>
+          <p>Elección de la computadora: {computerChoice.name}</p>
           <p>Resultado: {result}</p>
           <button onClick={resetGame} className="button">
             Reiniciar
@@ -99,3 +98,4 @@ function App() {
 }
 
 export default App;
+
