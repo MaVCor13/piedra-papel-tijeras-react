@@ -24,7 +24,7 @@ const getResult = (userChoice, computerChoice) => {
 };
 
 function App() {
-  const [playerName, setPlayerName] = useState(""); 
+  const [playerName, setPlayerName] = useState("");
 
   const handleNameChange = (event) => {
     setPlayerName(event.target.value);
@@ -32,10 +32,10 @@ function App() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert(`¡Hola, ${playerName}!`); 
+    alert(`¡Hola, ${playerName}!`);
   };
 
- const [playerChoice, setPlayerChoice] = useState(null);
+  const [playerChoice, setPlayerChoice] = useState(null);
   const [computerChoice, setComputerChoice] = useState(null);
   const [result, setResult] = useState(null);
 
@@ -74,8 +74,8 @@ function App() {
       <div className="button-container">
         {options.map((choice) => (
           <button
-            key={choice.id} {/* Usar choice.id en lugar de choice.name */}
-            onClick={() => handleChoice(choice)} {/* Pasa choice directamente */}
+            key={choice.id}
+            onClick={() => handleChoice(choice)}
             disabled={playerChoice !== null}
             className="button"
           >
@@ -98,4 +98,6 @@ function App() {
 }
 
 export default App;
+
+
 
