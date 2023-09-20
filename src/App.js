@@ -46,9 +46,13 @@ function App() {
           <button onClick={resetGame}>Reiniciar</button>
         </div>
       )}
-    </div><img src="/images/piedra.png" alt="Piedra" /></>
+      <div>
+      <img src="/img/piedra.png" alt="Piedra" />
+      <img src="/img/papel.png" alt="Papel" />
+      <img src="/img/tijeras.png" alt="Tijeras" />
+      
+    </div>
   );
 }
 
 export default App;
-
