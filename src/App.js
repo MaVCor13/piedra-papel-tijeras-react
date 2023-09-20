@@ -72,9 +72,9 @@ function App() {
         </div>
       )}
       <div className="images-container">
-        <img src={piedraImage} alt="Piedra" />
-        <img src={papelImage} alt="Papel" />
-        <img src={tijerasImage} alt="Tijeras" />
+      <img src="/img/piedra.png" alt="Piedra" />
+        <img src="/img/papel.png" alt="Papel" />
+        <img src="/img/tijeras.png" alt="Tijeras" />
       </div>
     </div>
   );
