@@ -3,9 +3,21 @@ import './App.css';
 const options = ["Piedra", "Papel", "Tijeras"];
 
 const getResult = (userChoice, computerChoice) => {
-  // Implementa tu lógica para determinar el resultado del juego aquí
-  // Devuelve "Empate", "Ganaste" o "Perdiste"
+  if (userChoice === computerChoice) {
+    return "Empate";
+  }
+
+  if (
+    (userChoice === "Piedra" && computerChoice === "Tijeras") ||
+    (userChoice === "Papel" && computerChoice === "Piedra") ||
+    (userChoice === "Tijeras" && computerChoice === "Papel")
+  ) {
+    return "Ganaste";
+  }
+
+  return "Perdiste";
 };
+
 
 function App() {
   const [playerChoice, setPlayerChoice] = useState(null);
