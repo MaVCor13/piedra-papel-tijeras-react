@@ -1,8 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./App.css";
-import piedraImage from "./img/piedra.png";
-import papelImage from "./img/papel.png";
-import tijerasImage from "./img/tijeras.png";
 
 const options = [
   { id: 0, name: "Piedra", emoji: "🪨" },
@@ -27,12 +24,24 @@ const getResult = (userChoice, computerChoice) => {
 };
 
 function App() {
+  const [playerName, setPlayerName] = useState("");
+
+  const handleNameChange = (event) => {
+    setPlayerName(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert(`¡Hola, ${playerName}!`);
+  };
+
   const [playerChoice, setPlayerChoice] = useState(null);
   const [computerChoice, setComputerChoice] = useState(null);
   const [result, setResult] = useState(null);
 
   const handleChoice = (choice) => {
-    const computerChoice = options[Math.floor(Math.random() * options.length)];
+    const computerChoice =
+      options[Math.floor(Math.random() * options.length)];
     const gameResult = getResult(choice, computerChoice);
 
     setPlayerChoice(choice);
@@ -49,6 +58,20 @@ function App() {
   return (
     <div className="container">
       <h1 className="header">Juego de Piedra, Papel y Tijeras</h1>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Ingresa tu nombre:
+          <input
+            type="text"
+            value={playerName}
+            onChange={handleNameChange}
+          />
+        </label>
+        <button type="submit" className="button">
+          Comenzar
+        </button>
+      </form>
+
       <div className="button-container">
         {options.map((choice) => (
           <button
@@ -71,11 +94,6 @@ function App() {
           </button>
         </div>
       )}
-      <div className="images-container">
-      <img src={piedraImage} alt="Piedra" />
-      <img src={papelImage} alt="Papel" />
-      <img src={tijerasImage} alt="Tijeras" />
-      </div>
     </div>
   );
 }
