@@ -29,7 +29,7 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <><div className="App">
       <h1>Juego de Piedra, Papel y Tijeras</h1>
       <div>
         {options.map((choice) => (
@@ -46,7 +46,7 @@ function App() {
           <button onClick={resetGame}>Reiniciar</button>
         </div>
       )}
-    </div>
+    </div><img src="/images/piedra.png" alt="Piedra" /></>
   );
 }
 
