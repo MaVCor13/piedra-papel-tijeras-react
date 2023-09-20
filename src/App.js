@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import './App.css'; // Asegúrate de tener un archivo App.css en la misma carpeta
+import './App.css'; // 
 
 const options = ["Piedra", "Papel", "Tijeras"];
 
