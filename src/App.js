@@ -72,13 +72,19 @@ function App() {
   };
 
   useEffect(() => {
-    if (round > maxRounds) {
+    if (round === maxRounds) {
       alert("¡Juego terminado! Puntajes finales:");
       alert(`${playerName}: ${playerScore}`);
       alert(`Computadora: ${computerScore}`);
-      resetGame();
+      if (playerScore > computerScore) {
+        alert(`¡${playerName} es el ganador!`);
+      } else if (computerScore > playerScore) {
+        alert("La Computadora es el ganador.");
+      } else {
+        alert("El juego terminó en empate.");
+      }
     }
-  }, [round]);
+  }, [round, playerName, playerScore, computerScore]);
 
   return (
     <div className="container">
@@ -114,7 +120,7 @@ function App() {
           <p>Tu elección: {playerChoice}</p>
           <p>Elección de la computadora: {computerChoice.name}</p>
           <p>Resultado: {result}</p>
-          {round <= maxRounds && (
+          {round < maxRounds && (
             <button onClick={resetGame} className="button">
               Siguiente ronda
             </button>
