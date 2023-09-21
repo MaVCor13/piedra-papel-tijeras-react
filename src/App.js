@@ -56,23 +56,17 @@ function App() {
     } else if (gameResult === "Perdiste") {
       setComputerScore(computerScore + 1);
     }
-
-    if (round < maxRounds) {
-      setRound(round + 1);
-    }
   };
 
   const resetGame = () => {
     setPlayerChoice(null);
     setComputerChoice(null);
     setResult(null);
-    setRound(1);
-    setPlayerScore(0);
-    setComputerScore(0);
+    setRound(round + 1);
   };
 
   useEffect(() => {
-    if (round === maxRounds) {
+    if (round > maxRounds) {
       alert("¡Juego terminado! Puntajes finales:");
       alert(`${playerName}: ${playerScore}`);
       alert(`Computadora: ${computerScore}`);
@@ -120,7 +114,7 @@ function App() {
           <p>Tu elección: {playerChoice}</p>
           <p>Elección de la computadora: {computerChoice.name}</p>
           <p>Resultado: {result}</p>
-          {round < maxRounds && (
+          {round <= maxRounds && (
             <button onClick={resetGame} className="button">
               Siguiente ronda
             </button>
@@ -132,8 +126,14 @@ function App() {
         <p>{playerName}: {playerScore}</p>
         <p>Computadora: {computerScore}</p>
       </div>
+      <div className="images-container">
+        <img src="/piedra.jpg" alt="Piedra" />
+        <img src="/papel.jpg" alt="Papel" />
+        <img src="/tijeras.jpg" alt="Tijeras" />
+      </div>
     </div>
   );
 }
 
 export default App;
+
