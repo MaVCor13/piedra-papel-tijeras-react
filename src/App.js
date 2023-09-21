@@ -8,14 +8,14 @@ const options = [
 ];
 
 const getResult = (userChoice, computerChoice) => {
-  if (userChoice === computerChoice) {
+  if (userChoice === computerChoice.name) {
     return "Empate";
   }
 
   if (
-    (userChoice === "Piedra" && computerChoice === "Tijeras") ||
-    (userChoice === "Papel" && computerChoice === "Piedra") ||
-    (userChoice === "Tijeras" && computerChoice === "Papel")
+    (userChoice === "Piedra" && computerChoice.name === "Tijeras") ||
+    (userChoice === "Papel" && computerChoice.name === "Piedra") ||
+    (userChoice === "Tijeras" && computerChoice.name === "Papel")
   ) {
     return "Ganaste";
   }
@@ -27,7 +27,7 @@ function App() {
   const [playerName, setPlayerName] = useState("");
   const [playerScore, setPlayerScore] = useState(0);
   const [computerScore, setComputerScore] = useState(0);
-  const [round, setRound] = useState(0);
+  const [round, setRound] = useState(1);
   const maxRounds = 5;
 
   const handleNameChange = (event) => {
@@ -57,21 +57,26 @@ function App() {
       setComputerScore(computerScore + 1);
     }
 
-    setRound(round + 1);
+    if (round < maxRounds) {
+      setRound(round + 1);
+    }
   };
 
   const resetGame = () => {
     setPlayerChoice(null);
     setComputerChoice(null);
     setResult(null);
+    setRound(1);
+    setPlayerScore(0);
+    setComputerScore(0);
   };
 
   useEffect(() => {
-    if (round === maxRounds) {
+    if (round > maxRounds) {
+      alert("¡Juego terminado! Puntajes finales:");
+      alert(`${playerName}: ${playerScore}`);
+      alert(`Computadora: ${computerScore}`);
       resetGame();
-      setPlayerScore(0);
-      setComputerScore(0);
-      setRound(0);
     }
   }, [round]);
 
@@ -97,7 +102,7 @@ function App() {
           <button
             key={choice.id}
             onClick={() => handleChoice(choice.name)}
-            disabled={playerChoice !== null || round === maxRounds}
+            disabled={playerChoice !== null || round > maxRounds}
             className="button"
           >
             {choice.name}
@@ -109,7 +114,7 @@ function App() {
           <p>Tu elección: {playerChoice}</p>
           <p>Elección de la computadora: {computerChoice.name}</p>
           <p>Resultado: {result}</p>
-          {round < maxRounds && (
+          {round <= maxRounds && (
             <button onClick={resetGame} className="button">
               Siguiente ronda
             </button>
@@ -126,5 +131,3 @@ function App() {
 }
 
 export default App;
-
-
